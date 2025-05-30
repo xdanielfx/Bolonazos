@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Bolones Express</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            /* Fondo interactivo con degradado animado */
+            background: linear-gradient(45deg, #111, #333, #111);
+            background-size: 400% 400%; /* Tamaño grande para la animación */
+            animation: gradientAnimation 15s ease infinite; /* Animación de 15s */
+            color: #fff;
+            overflow-x: hidden; /* Evita barras de desplazamiento horizontales */
+        }
+
+        /* Keyframes para la animación del degradado de fondo */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header {
+            background: #000;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #FFB74D;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            background: #222;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        nav a {
+            margin: 0 10px;
+            color: #FFB74D;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #FF8C00;
+            text-decoration: underline;
+        }
+
+        .hero {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente para el hero */
+            border-bottom: 5px solid #FF5722;
+        }
+        .hero h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #FFB74D;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero img {
+            max-width: 80%;
+            width: auto;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 30px 10px;
+            gap: 25px; /* Espacio entre los productos */
+            background-color: rgba(0, 0, 0, 0.2); /* Fondo ligeramente transparente para los productos */
+        }
+        .product {
+            background: #fff;
+            color: #333;
+            width: 92%;
+            max-width: 320px;
+            margin: 0; /* Ya no es necesario con gap */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .product:hover {
+            transform: translateY(-6px);
+        }
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid #FF5722;
+        }
+        .product .info {
+            padding: 15px;
+        }
+        .product h3 {
+            margin: 0 0 8px;
+            font-size: 20px;
+            color: #E65100;
+        }
+        .product p {
+            margin: 6px 0 14px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FFD700;
+        }
+
+        .btn {
+            display: block;
+            width: 90%;
+            margin: 0 auto 10px;
+            padding: 12px;
+            background: #FF5722;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #E64A19;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #000;
+            color: #FFB74D;
+            border-top: 5px solid #FF5722;
+        }
+
+        .payment-methods {
+            margin-top: 30px;
+            padding: 20px 0; /* Añadimos padding para que se vea mejor */
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para la sección de pagos */
+            border-radius: 10px;
+            margin: 20px auto; /* Centrar y darle espacio */
+            max-width: 800px; /* Limitar ancho */
+        }
+        .payment-methods h3 {
+            color: #FF9800; /* Naranja para el título de pagos */
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        .payment-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Espacio entre logos */
+            margin-bottom: 20px;
+        }
+        .payment-logos img {
+            height: 40px; /* Tamaño uniforme para los logos */
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4)); /* Sombra para resaltar */
+            transition: transform 0.2s ease;
+        }
+        .payment-logos img:hover {
+            transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+        }
+
+        .whatsapp-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #25D366;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .whatsapp-button:hover {
+            background-color: #1ebe5d;
+            transform: translateY(-2px);
+        }
+
+        /* MEDIA QUERIES para responsividad */
+        @media (min-width: 600px) {
+            .product {
+                width: calc(50% - 40px); /* Dos productos por fila con más espacio */
+            }
+            .hero img {
+                height: 300px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .product {
+                width: calc(33.333% - 40px); /* Tres productos por fila con más espacio */
+            }
+            .hero img {
+                height: 350px;
+            }
+        }
+        @media (min-width: 1200px) {
+            .hero h2 {
+                font-size: 48px;
+            }
+            .hero p {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bolones Express</h1>
+    </header>
+
+    <nav>
+        <a href="#menu">Menú</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <section class="hero">
+        <h2>¡Los mejores bolones del Ecuador!</h2>
+        <p>Deliciosos, calientes y con entrega rápida.</p>
+        <img
+            src="https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/481168431_1150725173167431_4208161912526519683_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=_L014GTexCEQ7kNvwHIl__H&_nc_oc=AdkgwOwv_KXtruLmIrI9r1AHEG3XiE1MkiKE6kKf7ZLigGEV6E_RPJ_mMjcFJ2uhTFhhBIJS-E_-gyBxnxVQoQgw&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=bk8nCZEXhN0DegKlEt5sUw&oh=00_AfI6dedwxM46IuuO2hiyNzG094UIGd3827lgAg5luEaxRQ&oe=683D2304"
+            alt="Bolones Express"
+        />
+        <h2 style="margin-top: 20px; font-size: 28px; color: #FF9800;">OFRECEMOS</h2>
+    </section>
+
+    <section id="menu" class="products">
+        <div class="product">
+            <img src="https://mrbolon.com.ec/wp-content/uploads/2022/02/Dise%C3%B1o-sin-t%C3%ADtulo-100.png" alt="Bolón de chicharrón" />
+            <div class="info">
+                <h3>Bolón de Chicharrón</h3>
+                <p>$2.99</p>
+                <button class="btn">Agregar</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://i0.wp.com/recetaskwa.com/wp-content/uploads/2024/10/Miniatura-Bolon-Mixto-FB.jpeg?resize=1024%2C1024&ssl=1" alt="Bolón Mixto" />
+            <div class="info">
+                <h3>Bolón Mixto</h3>
+                <p>$3.50</p>
+                <button class="btn">Agregar</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2mYvglsZUnGWgRmwa3GyF-lOzUWF204Jz6w&s" alt="Bolón Vegetariano" />
+            <div class="info">
+                <h3>Bolón Vegetariano</h3>
+                <p>$3.25</p>
+                <button class="btn">Agregar</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://scontent-bog2-2.xx.fbcdn.net/v/t1.6435-9/36700067_2090581847851168_6208143293839048704_n.jpg?stp=dst-jpg_p600x600_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=dTysqcuSixQQ7kNvwEkFdJ4&_nc_oc=AdmTHsaDPr68Dg1jsYuaTHWB8gNZl0WaAX5kjBXMs1vCCwkniGIkWm-DDeHziHU0NtYrKzG4gPlN4E9XsyhlV1jM&_nc_zt=23&_nc_ht=scontent-bog2-2.xx&_nc_gid=F-pEjnxY1IJxhFOXSuv-mw&oh=00_AfIWf-9m_-ruMgVi-iFa7h7rqU74X3oqcGMz8oVLgJBLYQ&oe=685EB29C" alt="Tigrillo con chicharrón" />
+            <div class="info">
+                <h3>Tigrillo con Chicharrón</h3>
+                <p>$3.50</p>
+                <button class="btn">Agregar</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://tofuu.getjusto.com/orioneat-local/resized2/ptFhL5s8rxkKT8BqA-300-x.webp" alt="Encebollado" />
+            <div class="info">
+                <h3>Encebollado</h3>
+                <p>$2.99</p>
+                <button class="btn">Agregar</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://www.coheto.com/wp-content/uploads/2023/11/coca-cola-en-lata-sabor-orginal-350ml.png" alt="Gaseosas Coca-Cola" />
+            <div class="info">
+                <h3>Gaseosas</h3>
+                <p>$1.50</p>
+                <button class="btn">Agregar</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://statics.tipti.market/product-media/d25f3755-f071-48a3-b3c6-6dd1ce76562d.jpg" alt="Agua Splendor" />
+            <div class="info">
+                <h3>Agua Splendor</h3>
+                <p>$1.00</p>
+                <button class="btn">Agregar</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://www.marialabonita.com/wp-content/uploads/2019/03/cerveza-modelo-especial-botella-355ml.jpg" alt="Cerveza Modelo" />
+            <div class="info">
+                <h3>Cerveza</h3>
+                <p>$2.50</p>
+                <button class="btn">Agregar</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://www.cocina-ecuatoriana.com/base/stock/Recipe/seco-de-pollo-ecuatoriano/seco-de-pollo-ecuatoriano_web.jpg.webp" alt="Seco de Pollo" />
+            <div class="info">
+                <h3>Seco de Pollo</h3>
+                <p>$2.00</p>
+                <button class="btn">Agregar</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="payment-methods">
+            <h3>Métodos de Pago</h3>
+            <p>Aceptamos los siguientes métodos de pago para tu comodidad:</p>
+            <div class="payment-logos">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Logo Visa" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/2000px-Mastercard-logo.svg.png" alt="Logo Mastercard" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/1280px-American_Express_logo_%282018%29.svg.png" alt="Logo American Express" />
+                <img src="https://cdn.pixabay.com/photo/2018/05/08/21/29/paypal-3384015_640.png" alt="Logo PayPal" />
+            
+                </div>
+            <p>También aceptamos **efectivo** y **transferencias bancarias directas**.</p>
+        </div>
+
+        <a
+            class="whatsapp-button"
+            href="https://wa.me/593992482098"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            📲 Realizar pedido por WhatsApp
+        </a>
+
+        <p style="margin-top: 20px;">© 2025 Bolones Express. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
+
+
+
+
+
