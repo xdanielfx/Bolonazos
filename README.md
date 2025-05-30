@@ -1,2 +1,166 @@
 # Bolonazos
-pagina de prueba e-commerce
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Bolones Express</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #FF9800;
+      color: #fff;
+    }
+
+    header {
+      background: #E65100;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    nav {
+      text-align: center;
+      background: #FFB74D;
+      padding: 10px 0;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hero {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 16px;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .product {
+      background: #fff;
+      color: #333;
+      width: 90%;
+      max-width: 300px;
+      margin: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .product .info {
+      padding: 10px;
+    }
+
+    .product h3 {
+      font-size: 18px;
+      margin: 0 0 5px;
+    }
+
+    .product p {
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
+    .btn {
+      display: block;
+      background: #FF5722;
+      color: #fff;
+      padding: 10px;
+      margin: 10px auto;
+      border: none;
+      border-radius: 5px;
+      width: 80%;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #E65100;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Bolones Express</h1>
+  </header>
+
+  <nav>
+    <a href="#menu">Menú</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <div class="hero">
+    <h2>¡Los mejores bolones del Ecuador!</h2>
+    <p>Deliciosos, calientes y con entrega rápida.</p>
+  </div>
+
+  <section id="menu" class="products">
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80" alt="Bolón de chicharrón">
+      <div class="info">
+        <h3>Bolón de Chicharrón</h3>
+        <p>$3.50</p>
+        <button class="btn">Agregar</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1603048209827-a5a9788013fc?auto=format&fit=crop&w=800&q=80" alt="Bolón Mixto">
+      <div class="info">
+        <h3>Bolón Mixto</h3>
+        <p>$3.75</p>
+        <button class="btn">Agregar</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1601597102222-8d30923236f1?auto=format&fit=crop&w=800&q=80" alt="Bolón Vegetariano">
+      <div class="info">
+        <h3>Bolón Vegetariano</h3>
+        <p>$3.25</p>
+        <button class="btn">Agregar</button>
+      </div>
+    </div>
+
+  </section>
+
+  <footer id="contacto">
+    © 2025 Bolones Express – Riobamba, Ecuador
+  </footer>
+
+</body>
+</html>
+
